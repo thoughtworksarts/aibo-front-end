@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Test from './test'
+import Test from './dictaphone'
 
 class App extends Component {
   render() {
