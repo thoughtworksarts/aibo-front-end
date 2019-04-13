@@ -3,7 +3,7 @@ import SpeechRecognition from 'react-speech-recognition'
 import styles from './dictaphone.module.css';
 
 const Dictaphone = ({transcript, resetTranscript, recognition, startListening, stopListening}) => {
-    recognition.lang = 'id-ID'
+    recognition.lang = 'en-US'
 
     const toggleDictaphone = (event) => {
         if(event.target.checked){
