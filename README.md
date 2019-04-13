@@ -1,7 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
+## TO START THE APPLICATION
 In the project directory, you can run:
 
 ### `npm start`
@@ -11,6 +10,16 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
+
+## SPEECH TO TEXT
+**NOTE: This only works in Google Chrome.**
+At present, this front end component will show a page with a toggle button in the middle of the page.
+By default, the button is set to OFF. Clicking it will toggle the 'speech to text' to ON.
+The first time the speech to text functionality of the browser is turned on, the browser will request for permission to access the microphone.
+Once, it is turned on, please go ahead and speak to the application.
+
+---
+## Additional Information from the original create react app README.md
 
 ### `npm test`
 
