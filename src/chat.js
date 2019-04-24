@@ -12,8 +12,14 @@ class ChatBoxComponent extends Component {
 
     handleSubmission(chatMessage){
         this.setState({
-            chatHistory: chatMessage + "\n" + this.state.chatHistory
+            chatHistory: "Me: " + chatMessage + "\n" + this.state.chatHistory
         })
+
+        fetch('https://aibo-back-end.herokuapp.com/functional_chat')
+            .then(resp => resp.json())
+            .then(response => this.setState({
+                chatHistory: "Bot: " + response.intent + "\n" + this.state.chatHistory
+            }))
     }
 
     render() {
