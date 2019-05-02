@@ -1,11 +1,14 @@
 import React, { Component } from "react";
-import ChatBoxComponent from "./ChatBox";
+import ChatBox from "./ChatBox";
+import Dictaphone from "./Dictaphone";
 
 class App extends Component {
   render() {
     return (
       <div className="ui container">
-        <ChatBoxComponent />
+        <Dictaphone />
+        <div className="ui horizontal divider">Chat Log</div>
+        <ChatBox />
       </div>
     );
   }
