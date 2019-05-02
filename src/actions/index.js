@@ -9,6 +9,6 @@ export const getAIResponse = voiceToTextInput => async dispatch => {
 export const saveHumanInput = humanInput => {
   return {
     type: "HUMAN",
-    payload: "HUMAN " + humanInput
+    payload: "HUMAN: " + humanInput
   };
 };

@@ -4,7 +4,12 @@ import { saveHumanInput, getAIResponse } from "../actions/";
 import { connect } from "react-redux";
 
 class Dictaphone extends Component {
-  render() {
+  constructor(props) {
+    super(props);
+    this.input = React.createRef();
+  }
+
+  toggleDictaphone = (event, startRecording) => {
     const {
       transcript,
       resetTranscript,
@@ -12,44 +17,72 @@ class Dictaphone extends Component {
       stopListening
     } = this.props;
 
-    const toggleDictaphone = (event, startRecording) => {
-      if (startRecording) {
-        resetTranscript();
-        startListening();
-      } else {
-        stopListening();
+    if (startRecording) {
+      resetTranscript();
+      startListening();
+    } else {
+      stopListening();
 
-        //initiate our action creators
-        this.props.getAIResponse(transcript);
-        this.props.saveHumanInput(transcript);
-      }
-      event.preventDefault();
-    };
+      this.props.getAIResponse(transcript);
+      this.props.saveHumanInput(transcript);
+    }
+    event.preventDefault();
+  };
 
+  handleSubmit = event => {
+    this.props.saveHumanInput(this.input.current.value);
+    this.props.getAIResponse(this.input.current.value);
+
+    event.preventDefault();
+    event.target.reset();
+  };
+
+  render() {
     return (
-      <div className="ui two column centered grid">
-        <div className="eight column centered row">
-          <div className="column">
+      <div className="ui internally celled grid">
+        <div className="row">
+          <div className="eight wide right aligned column">
             <button
-              onClick={e => toggleDictaphone(e, true)}
+              onClick={e => this.toggleDictaphone(e, true)}
               className="massive circular ui blue icon button"
             >
               <i className="microphone icon" />
             </button>
-          </div>
-          <div className="column">
             <button
-              onClick={e => toggleDictaphone(e, false)}
+              onClick={e => this.toggleDictaphone(e, false)}
               className="massive circular ui red icon button"
             >
               <i className="stop icon" />
             </button>
           </div>
+          <div className="eight wide left middle aligned column">
+            <form className="ui mini form" onSubmit={this.handleSubmit}>
+              <div className="eight wide field">
+                <input
+                  type="text"
+                  ref={this.input}
+                  placeholder="Enter some text to chat!"
+                />
+              </div>
+              <button className="ui mini compact green button" type="submit">
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
-
-        <div className="column">
-          <div className="ui horizontal divider">Input</div>
-          <div className="ui mini visible message">{transcript}</div>
+        <div className="row">
+          <div className="twenty wide left middle aligned column">
+            <h4 className="ui center aligned header">Audio Input</h4>
+            <div className="ui icon mini compact message">
+              <i className="comment alternate icon" />
+              <div
+                style={{ overflow: "auto", maxHeight: "200" }}
+                className="content"
+              >
+                <p>{this.props.transcript}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

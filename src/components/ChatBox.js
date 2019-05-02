@@ -10,8 +10,10 @@ class ChatBox extends Component {
 
   render() {
     return (
-      <div className="column">
-        <div className="ui mini visible message">{this.renderChatLog()}</div>
+      <div style={{ overflow: "auto", maxHeight: 200 }} className="segment">
+        <div className="column">
+          <div className="ui mini visible message">{this.renderChatLog()}</div>
+        </div>
       </div>
     );
   }
